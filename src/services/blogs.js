@@ -17,4 +17,21 @@ const create = async newObject => {
     return response.data
 }
 
-export default { getAll, create, setToken }
+const update = async (obj) => {
+    console.log("UPDATE BLOG", obj)
+    const response = await axios.put(baseUrl + "/" + obj.id, obj)
+    return response.data
+}
+
+const remove = async (obj) => {
+    console.log("DEL BLOG", obj)
+    const config = { headers: { Authorization: TOKEN }, }
+    const response = await axios.delete(baseUrl + "/" + obj.id, config)
+    return response.data
+}
+
+const sort = (blogs) => {
+    blogs.sort((a, b) => (  b.likes - a.likes )  )
+
+}
+export default { getAll, create, update, remove, setToken, sort }
