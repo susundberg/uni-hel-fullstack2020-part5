@@ -16,7 +16,7 @@ const Blog = ({ blog, onLike, onRemove, user }) => {
 
 
     const blogUser = blog.user ? blog.user.name : "?"
-    console.log("blog", blogUser, blog.title)
+    // console.log("blog", blogUser, blog.title)
     if (expanded) {
         return (
             <div style={blogStyle}>
@@ -43,25 +43,35 @@ const Blog = ({ blog, onLike, onRemove, user }) => {
     }
 }
 
-const BlogForm = ({ onSubmit }) => (
+const BlogForm = ({ onSubmit }) => {
+    const onSubmitRaw = (event) => {
+        event.preventDefault()
+        const title = event.target.btitle.value
+        const author = event.target.author.value
+        const url = event.target.url.value
 
+        onSubmit(title, author, url)
+    }
 
-    <form onSubmit={onSubmit}>
-        {["title", "author", "url"].map((x) => (
-            <div key={x}> {x} <input type="text" name={x} /></div>
-        ))}
+    return (
+        <form onSubmit={onSubmitRaw} >
+            {
+                ["btitle", "author", "url"].map((x) => (
+                    <div key={x}> {x} <input type="text" name={x} /></div>
+                ))
+            }
 
-        <button type="submit">Submit</button>
-    </form>
+            < button type="submit" > Submit</button>
+        </form >)
 
-)
+}
 
 const BlogView = ({ blogs, onSubmit, onLike, onRemove, user }) => {
     const blogFormRef = React.createRef()
 
-    const onSubmitWithHide = (event) => {
+    const onSubmitWithHide = (title, author, url) => {
         blogFormRef.current.toggleVisibility()
-        return onSubmit(event)
+        return onSubmit(title, author, url)
     }
 
     return (
@@ -78,11 +88,12 @@ const BlogView = ({ blogs, onSubmit, onLike, onRemove, user }) => {
 }
 
 BlogView.propTypes = {
-    blogs: PropTypes.func.isRequired,
+    blogs: PropTypes.array.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onLike: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
-    user: PropTypes.func.isRequired
+    user: PropTypes.object.isRequired
 }
 
 export default BlogView
+export { Blog, BlogForm }

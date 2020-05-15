@@ -39,7 +39,7 @@ const App = () => {
 
         const newBlogs = [...blogs]
         newBlogs[index].likes += 1
-        blogService.sort( newBlogs )
+        blogService.sort(newBlogs)
         setBlogs(newBlogs)
     }
 
@@ -71,11 +71,8 @@ const App = () => {
         setInfoMessage(`Blog ${blog.title} by ${blog.author} removed!`, 2)
     }
 
-    const onBlogSubmit = async (event) => {
-        event.preventDefault()
-        const title = event.target.title.value
-        const author = event.target.author.value
-        const url = event.target.url.value
+    const onBlogSubmit = async (title, author, url) => {
+
         console.log("OnBlogSubmit", title, author, url)
         try {
             const newBlog = await blogService.create({ title, author, url })
