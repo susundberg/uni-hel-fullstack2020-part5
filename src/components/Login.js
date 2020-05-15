@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const LoginForm = ({ onLogin }) => {
     const [username, setUsername] = useState('')
@@ -28,5 +29,9 @@ const LoginForm = ({ onLogin }) => {
 const UserView = ({ user, onLogout }) => (
     <div> Logged in as: {user.name} ({user.username}) <button onClick={onLogout}>logout</button> </div>
 )
+
+LoginForm.propTypes = {
+    onLogin: PropTypes.func.isRequired
+}
 
 export { UserView, LoginForm }

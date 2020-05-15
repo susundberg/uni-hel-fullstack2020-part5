@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Togglable from './Toggable'
-
+import PropTypes from 'prop-types'
 
 const Blog = ({ blog, onLike, onRemove, user }) => {
     const [expanded, setExpand] = useState(false)
@@ -76,4 +76,13 @@ const BlogView = ({ blogs, onSubmit, onLike, onRemove, user }) => {
 
     )
 }
+
+BlogView.propTypes = {
+    blogs: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onLike: PropTypes.func.isRequired,
+    onRemove: PropTypes.func.isRequired,
+    user: PropTypes.func.isRequired
+}
+
 export default BlogView
