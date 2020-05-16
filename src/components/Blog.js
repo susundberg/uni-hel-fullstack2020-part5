@@ -19,7 +19,7 @@ const Blog = ({ blog, onLike, onRemove, user }) => {
     // console.log("blog", blogUser, blog.title)
     if (expanded) {
         return (
-            <div style={blogStyle}>
+            <div style={blogStyle} className="blog blog-extended">
                 <ul>
                     <li> Title: {blog.title} </li>
                     <li> Author: {blog.author} </li>
@@ -36,7 +36,7 @@ const Blog = ({ blog, onLike, onRemove, user }) => {
 
     } else {
         return (
-            <div style={blogStyle}>
+            <div style={blogStyle} className="blog blog-small">
                 {blog.title} by {blog.author} <button onClick={() => { setExpand(true) }}>show</button>
             </div>
         )
@@ -81,7 +81,9 @@ const BlogView = ({ blogs, onSubmit, onLike, onRemove, user }) => {
             </Togglable>
 
             <h2> Existing Blogs </h2>
-            {blogs.map((b) => (<Blog blog={b} key={b.id} onRemove={onRemove} onLike={onLike} user={user} />))}
+            <div id="blogs">
+                {blogs.map((b) => (<Blog blog={b} key={b.id} onRemove={onRemove} onLike={onLike} user={user} />))}
+            </div>
         </div >
 
     )

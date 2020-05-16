@@ -40,6 +40,7 @@ const App = () => {
         const newBlogs = [...blogs]
         newBlogs[index].likes += 1
         blogService.sort(newBlogs)
+        console.log("SORTED", newBlogs)
         setBlogs(newBlogs)
     }
 

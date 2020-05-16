@@ -14,20 +14,23 @@ const LoginForm = ({ onLogin }) => {
     }
 
     return (
-        <form onSubmit={onSubmit}>
-            <div> username
-                <input type="text" value={username} name="username" onChange={({ target }) => setUsername(target.value)} />
-            </div>
-            <div> password
-                <input type="password" value={password} name="password" onChange={({ target }) => setPassword(target.value)} />
-            </div>
-            <button type="submit">login</button>
-        </form>)
+        <div>
+            <h2>Please Login</h2>
+            <form onSubmit={onSubmit}>
+                <div> username
+                    <input type="text" value={username} name="username" onChange={({ target }) => setUsername(target.value)} />
+                </div>
+                <div> password
+                    <input type="password" value={password} name="password" onChange={({ target }) => setPassword(target.value)} />
+                </div>
+                <button name="submit" type="submit">login</button>
+            </form>
+        </div>)
 
 }
 
 const UserView = ({ user, onLogout }) => (
-    <div> Logged in as: {user.name} ({user.username}) <button onClick={onLogout}>logout</button> </div>
+    <div> Logged in as: {user.name} ({user.username}) <button name="logout" onClick={onLogout}>logout</button> </div>
 )
 
 LoginForm.propTypes = {
